@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Room</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.min.js"></script>
+</head>
+<body>
+    <div id="chat-container">
+        <div id="chat-box"></div>
+        <div id="user-input">
+            <input type="text" id="message" placeholder="Type your message here..." autocomplete="off">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var socket = io();
+        var username = prompt("Enter your username:");
+        var room = 'main_room';
+
+        socket.emit('join', {'username': username, 'room': room});
+
+        socket.on('message', function(msg) {
+            var chatBox = document.getElementById('chat-box');
+            var message = document.createElement('p');
+            message.innerHTML = msg;
+            chatBox.appendChild(message);
+            chatBox.scrollTop = chatBox.scrollHeight;  // Auto-scroll to the bottom
+        });
+
+        function sendMessage() {
+            var message = document.getElementById('message').value;
+            if (message.trim() !== '') {
+                socket.emit('message', {'username': username, 'msg': message, 'room': room});
+                document.getElementById('message').value = '';
+            }
+        }
+
+        // Add event listener for "Enter" key
+        document.getElementById('message').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Prevent form submission if any
+                sendMessage();
+            }
+        });
+
+        window.onbeforeunload = function() {
+            socket.emit('leave', {'username': username, 'room': room});
+        }
+    </script>
+</body>
+</html>

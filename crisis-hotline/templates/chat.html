@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Room</title>
+</head>
+<body>
+    <h1>Chat Room for {{ username }}</h1>
+    <h2>You are logged in as: {{ role }}</h2>
+    
+    <div id="waiting-message" style="color: red;"></div>
+    <div id="chat-box"></div>
+    <input type="text" id="message-input" placeholder="Type your message here" disabled>
+    <button onclick="sendMessage()" disabled>Send</button>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+    <script>
+        var socket = io();
+        var room = "{{ username }}";
+        var role = "{{ role }}";
+        
+        socket.emit('join', {username: role, room: room, role: role});
+
+        // Listen for messages
+        socket.on('message', function(data) {
+            document.getElementById('chat-box').innerHTML += '<p>' + data + '</p>';
+        });
+
+        // Handle waiting for admin to join
+        socket.on('waiting_for_admin', function(data) {
+            document.getElementById('waiting-message').innerHTML = data.message;
+        });
+
+        // Enable chat when admin joins
+        socket.on('message', function(data) {
+            if (data.includes('Admin has joined the chat')) {
+                document.getElementById('waiting-message').innerHTML = '';
+                document.getElementById('message-input').disabled = false;
+                document.querySelector('button').disabled = false;
+            }
+        });
+
+        // Send a message
+        function sendMessage() {
+            var message = document.getElementById('message-input').value;
+            socket.emit('message', {message: "{{ role }}: " + message, room: room, role: role});
+            document.getElementById('message-input').value = '';  // Clear input field
+        }
+    </script>
+</body>
+</html>
