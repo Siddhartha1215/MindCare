@@ -1,3 +1,3 @@
-from flask_socketio import SocketIO # type: ignore
+from flask_socketio import SocketIO
 
 socketio = SocketIO()

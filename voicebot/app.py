@@ -1,22 +1,28 @@
-from flask import Flask, request, jsonify, render_template, send_file
+from flask import request, jsonify, render_template, Blueprint, flash, redirect, url_for
 import speech_recognition as sr
+from flask_login import current_user
 import google.generativeai as genai
-from gtts import gTTS
-from pydub import AudioSegment
-import io
 
-app = Flask(__name__)
+app = Blueprint('voicebot', __name__, template_folder='templates')
 
 recognizer = sr.Recognizer()
 genai.configure(api_key="AIzaSyDHLQe1XH7ZtwwvLrTc3x4Kk5dosQUUmio")
 model = genai.GenerativeModel('gemini-1.5-flash', generation_config=genai.GenerationConfig(temperature=0.9))
 
-@app.route('/')
-def index():
-    return render_template('index.html')
+
+@app.route('/voice', methods=['GET'])
+def voice():
+    if current_user.is_authenticated:
+        return render_template('voice.html')
+    flash('You need to log in to access the voice.', 'warning')
+    return redirect(url_for('login_panel.login'))
 
 @app.route('/generate-response', methods=['POST'])
 def generate_response():
+    if not current_user.is_authenticated:
+        flash('You need to log in to access the voice feature.', 'warning')
+        return redirect(url_for('login_panel.login'))
+    
     data = request.json
     text = data['text']
     
@@ -29,17 +35,4 @@ def generate_response():
     response = model.generate_content(f"{sys_message}, query: {text}")
     cleaned_text = response.text.replace('*', '')
 
-    # Convert cleaned text to audio
-    # tts = gTTS(text=cleaned_text, lang='en')
-    # audio_file = io.BytesIO()
-    # tts.write_to_fp(audio_file)
-    # audio_file.seek(0)
-    
-    # # Save audio to a file
-    # audio_segment = AudioSegment.from_mp3(audio_file)
-    # audio_segment.export("static/response_audio.mp3", format="mp3")
-    
     return jsonify({'response': cleaned_text})
-
-if __name__ == '__main__':
-    app.run(debug=True)

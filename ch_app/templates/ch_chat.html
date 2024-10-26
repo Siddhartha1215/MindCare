@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Room</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chat_app.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.min.js"></script>
+    <style>
+        #chat-box {
+            border: 1px solid #ccc;
+            height: 300px;
+            overflow-y: scroll;
+            padding: 10px;
+        }
+        #user-input {
+            margin-top: 10px;
+        }
+        #message {
+            width: calc(100% - 82px);
+        }
+    </style>
+</head>
+<body>
+    <h1>Chat Room for {{ username }}</h1>
+    <h2>You are logged in as: {{ role }}</h2>
+    
+    <div id="chat-box"></div>
+    <div id="user-input">
+        <input type="text" id="message" placeholder="Type your message here..." autocomplete="off" disabled>
+        <button onclick="sendMessage()" disabled>Send</button>
+    </div>
+
+    <script type="text/javascript">
+        var socket = io();
+
+        socket.on('connect', () => {
+            console.log('Connected to Socket.IO server');
+            var room = "{{ username }}";
+            var role = "{{ role }}";
+            socket.emit('ch_join', { room: room, role: role });
+        });
+
+        socket.on('connect_error', (error) => {
+            console.error('Socket.IO Connection Error:', error);
+        });
+
+        socket.on('ch_message', function(data) {
+        var chatBox = document.getElementById('chat-box');
+        chatBox.innerHTML += '<p>' + data + '</p>';
+        chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll to the bottom
+        });
+
+
+        socket.on('waiting_for_admin', function(data) {
+            var chatBox = document.getElementById('chat-box');
+            chatBox.innerHTML += '<p style="color: red;">' + data.message + '</p>';
+        });
+
+        socket.on('admin_has_joined', function(data) {
+            document.getElementById('message').disabled = false;
+            document.querySelector('button').disabled = false;
+            var chatBox = document.getElementById('chat-box');
+            chatBox.innerHTML += '<p>' + data.message + '</p>';
+        });
+
+        function sendMessage() {
+            var message = document.getElementById('message').value;
+            if (message.trim() !== '') {
+                var room = "{{ username }}";
+                var role = "{{ role }}";
+                socket.emit('ch_message', { message: role + ": " + message, room: room, role: role });
+                document.getElementById('message').value = '';
+            }
+        }
+
+        document.getElementById('message').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Prevent form submission
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chat_app.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.min.js"></script>
+</head>
+<body>
+    <h2>Admin Dashboard</h2>
+    <div id="chat-container">
+        <div id="chat-box"></div>
+        <div id="admin-controls">
+            <input type="text" id="remove-username" placeholder="Username to remove">
+            <button onclick="removeUser()">Remove User</button>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var socket = io();
+        var room = 'main_room';
+
+        socket.emit('join', {'username': 'Admin', 'room': room});
+
+        socket.on('message', function(msg) {
+            var chatBox = document.getElementById('chat-box');
+            var message = document.createElement('p');
+            message.innerHTML = msg;
+            chatBox.appendChild(message);
+            chatBox.scrollTop = chatBox.scrollHeight;  // Auto-scroll to the bottom
+        });
+
+        socket.on('user_removed', function(data) {
+            var chatBox = document.getElementById('chat-box');
+            var message = document.createElement('p');
+            message.innerHTML = data.username + " has been removed from the chat.";
+            chatBox.appendChild(message);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        });
+
+        function removeUser() {
+            var username = document.getElementById('remove-username').value;
+            if (username.trim() !== '') {
+                socket.emit('remove_user', {'username': username});
+                document.getElementById('remove-username').value = ''; // Clear the input
+            }
+        }
+    </script>
+</body>
+</html>

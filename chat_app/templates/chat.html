@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat Room</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chat_app.css') }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.min.js"></script>
 </head>
 <body>
@@ -16,13 +15,31 @@
             <button onclick="sendMessage()">Send</button>
         </div>
     </div>
+    
+    <div id="ban-message" style="display:none; color:red; text-align:center; margin-top:20px;">
+        <!-- Ban message will be displayed here -->
+    </div>
 
     <script type="text/javascript">
         var socket = io();
-        var username = prompt("Enter your username:");
+        var username = "{{ username }}";
         var room = 'main_room';
+        var isBanned = false;
 
-        socket.emit('join', {'username': username, 'room': room});
+        // Check if the user is banned initially
+        fetch('/chat_app/check_ban/' + username)
+            .then(response => response.json())
+            .then(data => {
+                if (data.banned) {
+                    document.getElementById('ban-message').innerText = data.message;
+                    document.getElementById('ban-message').style.display = 'block';
+                    document.getElementById('chat-container').style.display = 'none';
+                    isBanned = true;
+                } else {
+                    document.getElementById('chat-container').style.display = 'block';
+                    socket.emit('join', {'username': username, 'room': room});
+                }
+            });
 
         socket.on('message', function(msg) {
             var chatBox = document.getElementById('chat-box');
@@ -32,7 +49,19 @@
             chatBox.scrollTop = chatBox.scrollHeight;  // Auto-scroll to the bottom
         });
 
+        socket.on('banned', function(data) {
+            document.getElementById('ban-message').innerText = data.message;
+            document.getElementById('ban-message').style.display = 'block';
+            document.getElementById('chat-container').style.display = 'none';
+            isBanned = true;
+            socket.disconnect();  // Disconnect the user from the chat
+        });
+
         function sendMessage() {
+            if (isBanned) {
+                alert('You are banned from the chat.');
+                return;
+            }
             var message = document.getElementById('message').value;
             if (message.trim() !== '') {
                 socket.emit('message', {'username': username, 'msg': message, 'room': room});

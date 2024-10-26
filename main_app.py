@@ -1,6 +1,9 @@
 from flask import render_template
 from flask_login import LoginManager, current_user, UserMixin
 from login_panel.app import app as login_panel
+from voicebot.app import app as voicebot
+from chat_app.app import app as chat_app
+from ch_app.app import app as ch_app
 from socket_instance import socketio
 from shared import app
 from mongo import db
@@ -9,6 +12,9 @@ socketio.init_app(app)
 
 # Register the blueprint
 app.register_blueprint(login_panel, url_prefix='/login_panel')
+app.register_blueprint(voicebot, url_prefix='/voicebot')
+app.register_blueprint(chat_app, url_prefix='/chat_app')
+app.register_blueprint(ch_app, url_prefix='/ch_app')
 
 # Initialize Flask-Login
 login_manager = LoginManager(app)
@@ -43,4 +49,4 @@ def index():
 
 
 if __name__ == '__main__':
-    socketio.run(app, host='0.0.0.0', port=5000,debug=True)
+    socketio.run(app, debug=True)
