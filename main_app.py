@@ -1,6 +1,7 @@
 from flask import render_template
 from flask_login import LoginManager, current_user, UserMixin
 from login_panel.app import app as login_panel
+from video_maker.app import app as video_maker
 from voicebot.app import app as voicebot
 from chat_app.app import app as chat_app
 from ch_app.app import app as ch_app
@@ -17,6 +18,7 @@ app.register_blueprint(voicebot, url_prefix='/voicebot')
 app.register_blueprint(chat_app, url_prefix='/chat_app')
 app.register_blueprint(ch_app, url_prefix='/ch_app')
 app.register_blueprint(symptom, url_prefix='/symptom')
+app.register_blueprint(video_maker, url_prefix='/video_maker')
 
 # Initialize Flask-Login
 login_manager = LoginManager(app)

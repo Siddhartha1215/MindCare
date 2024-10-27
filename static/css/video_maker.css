@@ -1,0 +1,67 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+form {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.symptom-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three columns */
+    gap: 20px; /* Spacing between columns */
+    justify-items: start;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+.result {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.result h2 {
+    color: #333;
+}
+
+.prediction {
+    color: #007bff; /* Bootstrap primary color */
+    font-weight: bold;
+}
+
+a {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #007bff; /* Link color */
+}
+
+a:hover {
+    text-decoration: underline;
+}

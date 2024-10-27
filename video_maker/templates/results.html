@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Results</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <style>
+        /* Style for the entire page background */
+        body {
+            background-color: #dfedfe;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        /* Style for the header */
+        header {
+            background-color: #4a90e2;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        /* Container for video results */
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        /* Heading for the video results section */
+        .container h2 {
+            color: #4a90e2;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Style for embedded video containers */
+        .video-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        /* Style for video and text alignment */
+        .video-embed {
+            flex: 1;
+            max-width: 60%;
+        }
+
+        .video-text {
+            flex: 1;
+            padding-left: 15px;
+            color: #4a90e2;
+            font-weight: bold;
+        }
+
+        /* Style for the back button */
+        .btn-secondary {
+            background-color: #6c757d;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Mental Health Support - Video Results</h1>
+    </header>
+
+    <div class="container mt-5">
+        <h2>Embedded YouTube Videos</h2>
+        <div>
+            {% for url in embedded_urls %}
+                <div class="video-item">
+                    <div class="video-embed">{{ url[0]|safe }}</div>
+                    <div class="video-text">{{ url[1] }}</div>
+                </div>
+            {% endfor %}
+        </div>
+        <a href="{{ url_for('video_maker.video_maker') }}" class="btn btn-secondary mt-3">Back</a>
+    </div>
+</body>
+</html>
