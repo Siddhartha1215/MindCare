@@ -81,7 +81,7 @@
     <!-- Form Section -->
     <div class="container mt-5">
         <h2>Submit Your Thoughts</h2>
-        <form action="{{ url_for('video_maker.submit') }}" method="POST">
+        <form action="{{ url_for('video_maker.video_maker_submit') }}" method="POST">
             <div class="form-group">
                 <label for="user_input">Your Input:</label>
                 <input type="text" id="user_input" name="user_input" class="form-control" required>

@@ -9,8 +9,9 @@ app = Blueprint('video_maker', __name__, template_folder='templates')
 from googleapiclient.discovery import build
 
 # Your YouTube API key
+api_key="AIzaSyDWhP88Hr8O7FtRHQnOVtKWYCg8S4v4jh4"
 # api_key = 'AIzaSyC2HjctZ48Zaf3_mY2ricBiKD_-g5SfQts'
-api_key=""
+# api_key=""
 
 # Initialize YouTube API client
 youtube = build('youtube', 'v3', developerKey=api_key)
