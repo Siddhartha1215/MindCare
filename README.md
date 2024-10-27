@@ -1,19 +1,17 @@
 # Project Name
 
 ### Technologies Used
-- **Frontend**: HTML, CSS, JavaScript, [Frameworks/Libraries]
-- **Backend**: [Backend Framework], [Language]
-- **Database**: [Database Technology]
-- **APIs and Integrations**: [API Names]
-- **Other**: [Other Technologies, Tools, or Libraries]
+- **Frontend**: HTML, CSS, JavaScript
+- **Backend**: Flask(python)
+- **Database**: MongoDB
+- **APIs and Integrations**: Google Gemini API,Youtube Search API
 
 ---
 
 ### Project Description
-**Problem Statement**: Briefly describe the problem your project addresses.
-
-**Solution**: Explain how your project solves this problem or adds value to users.
-
+**Problem Statement**: In today’s fast paced world, many individuals struggle to manage stress and mental health issues which are rising globally. More than 8% suicides happen due to stress.This Project aims to reduce stress
+**Solution**: This Project aims to reduce stress by connecting with anonomus people through 
+   -*chat room* to share their feeling.Chat rooms can be dynamically created
 ---
 
 ### API References
