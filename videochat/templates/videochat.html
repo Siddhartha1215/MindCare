@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Chat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/videochat.css') }}">
+</head>
+<body>
+    <input type="hidden" id="username" value="{{ username }}">
+    <div id="status">Loading...</div>
+    <video id="localVideo" autoplay muted></video>
+    <video id="remoteVideo" autoplay></video>
+    
+    <div id="notification"></div>
+    
+    <!-- Buttons for managing the call -->
+    <button id="startCall" style="display:none;">Start Call</button>
+    <button id="pickUpCall" style="display:none;">Pick Up Call</button>
+    <button id="rejectCall" style="display:none;">Reject Call</button>
+    <button id="endCall" style="display:none;">End Call</button>
+    <button id="muteButton" style="display:none;">Mute</button>
+    <button id="videoToggleButton" style="display:none;">Turn Video Off</button>
+    <script>
+        const username = "{{ username }}";
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="{{ url_for('static', filename='js/videochat.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Symptoms</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/symptom.css') }}">
+</head>
+<body>
+    <h1>Select a Primary Symptom</h1>
+    <div class = "container">
+      <div class = "card">
+        <form method="POST">
+            <div class="grid-container">
+                {% for option in options %}
+                    <div class="grid-item">
+                        <label>
+                            <input type="radio" name="symptom" value="{{ option }}" required>{{ option }}
+                        </label>
+                    </div>
+                {% endfor %}
+            </div>
+            <div style="margin-left: 45%; width: 150px; height: auto;"> 
+                <input type="submit" value="Next" class="btn-cta">
+            </div>
+        </form>
+      </div>
+    </div>
+</body>
+</html>
+

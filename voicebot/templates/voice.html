@@ -9,6 +9,15 @@
 <body>
     <div class="container">
         <h1>AI Medical Assistant</h1>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="flash-message {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
         <button id="voice-btn">Speak Now</button>
         <textarea id="user-input" placeholder="Your speech will appear here..."></textarea>
         <div id="response-container">

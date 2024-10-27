@@ -4,15 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crisis Hotline</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ch.css') }}">
 </head>
 <body>
-    <h1>Welcome to the Crisis Hotline</h1>
+    <div id="container">
+        <h1>Welcome to the Crisis Hotline</h1>
 
-    <!-- Admin Login opens in a new tab -->
-    <button onclick="openAdminLogin()">Admin Login</button>
+        <!-- Admin Login opens in a new tab -->
+        <button class="action-button" onclick="openAdminLogin()">Admin Login</button>
 
-    <!-- User Chat opens in a new tab -->
-    <button onclick="startChat()">Start Chat as User</button>
+        <!-- User Chat opens in a new tab -->
+        <button class="action-button" onclick="startChat()">Start Chat as User</button>
+    </div>
 
     <script>
         function openAdminLogin() {

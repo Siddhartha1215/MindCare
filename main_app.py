@@ -5,6 +5,7 @@ from voicebot.app import app as voicebot
 from chat_app.app import app as chat_app
 from ch_app.app import app as ch_app
 from socket_instance import socketio
+from symptom.app import app as symptom
 from shared import app
 from mongo import db
 
@@ -15,6 +16,7 @@ app.register_blueprint(login_panel, url_prefix='/login_panel')
 app.register_blueprint(voicebot, url_prefix='/voicebot')
 app.register_blueprint(chat_app, url_prefix='/chat_app')
 app.register_blueprint(ch_app, url_prefix='/ch_app')
+app.register_blueprint(symptom, url_prefix='/symptom')
 
 # Initialize Flask-Login
 login_manager = LoginManager(app)
@@ -47,6 +49,10 @@ def load_user(user_id):
 def index():
     return render_template('index.html', logged_in=current_user.is_authenticated)
 
+@app.route('/register')
+def register():
+    return render_template('register.html')
+
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True)
+    socketio.run(app, host='0.0.0.0', port=5000,debug=True)

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Additional Symptoms</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/symptom.css') }}">
+</head>
+<body>
+    <h1>You selected: {{ selected_symptom }}</h1>
+    <center><h2>Select Additional Symptoms</h2></center>
+    <div class = "container">
+        <div class = "card">
+            <form method="POST" action="{{ url_for('symptom.predict') }}">
+                <input type="hidden" name="selected_symptom" value="{{ selected_symptom }}">
+                <div class="grid-container">
+                    {% for option in options %}
+                        <div class="grid-item">
+                            <label>
+                                <input type="checkbox" name="additional_symptoms" value="{{ option }}">{{ option }}
+                            </label>
+                        </div>
+                    {% endfor %}
+                </div>
+                <input type="submit" value="Predict" class="btn-cta">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+

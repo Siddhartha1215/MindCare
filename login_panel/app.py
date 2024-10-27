@@ -1,14 +1,26 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import LoginManager, UserMixin, login_user, current_user, logout_user, login_required
-from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 from mongo import db
+import re
+from bson.objectid import ObjectId
 
 app = Blueprint('login_panel', __name__, template_folder='templates')
 
 login_manager = LoginManager()
 login_manager.login_view = 'login_panel.login'
 login_manager.login_message_category = 'info'
+
+
+def is_password_strong(password):
+    length = len(password) >= 8
+    has_upper = re.search(r"[A-Z]", password)
+    has_lower = re.search(r"[a-z]", password)
+    has_digit = re.search(r"\d", password)
+    has_special = re.search(r"[!@#$%^&*(),.?\":{}|<>]", password)
+    
+    return length and has_upper and has_lower and has_digit and has_special
+
 
 class User(UserMixin):
     def __init__(self, username, password_hash, id=None):
@@ -39,11 +51,15 @@ def register():
         password = request.form['password']
         if db.users.find_one({"username": username}):
             flash('That username is taken. Please choose a different one.', 'danger')
-            return redirect(url_for('login_panel.register'))        
+            return redirect(url_for('login_panel.register'))
+        
+        if not is_password_strong(password):
+            flash('Password must be at least 8 characters long, include an uppercase letter, a lowercase letter, a digit, and a special character.', 'danger')
+            return redirect(url_for('login_panel.register'))
+
         hashed_password = generate_password_hash(password)
         db.users.insert_one({"username": username, "password_hash": hashed_password})
-        flash('Your account has been created! You are now able to log in', 'success')
-        return redirect(url_for('login_panel.login'))
+        return redirect(url_for('login_panel.login'))  
     return render_template('register.html')
 
 @app.route('/login', methods=['GET', 'POST'])

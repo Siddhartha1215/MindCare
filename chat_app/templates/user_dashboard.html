@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/user_dashboard.css') }}">
+</head>
+<body>
+    <div id="dashboard-container">
+        <h2>User Dashboard</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="flash-message {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <!-- Create Chat Room Form -->
+
+        <div id="user-input">        
+            <form style="margin-left: 20%;" id="create-room-form">
+                <input type="text" id="room-name" placeholder="Enter room name" required>
+                <button type="submit">Create Room</button>
+            </form>
+        </div>
+        <!-- Available Chat Rooms -->
+        <div id="rooms-list">
+            <h3>Available Chat Rooms</h3>
+            <div id="room-cards">
+                <!-- Room cards will be loaded here dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        document.getElementById('create-room-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const roomName = document.getElementById('room-name').value;
+            fetch('/chat_app/create_room', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({room_name: roomName})
+            }).then(response => response.json())
+              .then(data => {
+                  if (data.success) {
+                      loadRooms(); // Reload rooms after creating a new one
+                  } else {
+                      alert('Room creation failed.');
+                  }
+              });
+        });
+
+        function loadRooms() {
+            fetch('/chat_app/rooms')
+                .then(response => response.json())
+                .then(data => {
+                    const roomCards = document.getElementById('room-cards');
+                    roomCards.innerHTML = '';
+                    data.rooms.forEach(room => {
+                        const card = document.createElement('div');
+                        card.className = 'room-card';
+                        card.innerHTML = `
+                            <h4>${room}</h4>
+                            <button onclick="joinRoom('${room}')">Join Room</button>
+                        `;
+                        roomCards.appendChild(card);
+                    });
+                });
+        }
+
+        function joinRoom(roomName) {
+            window.location.href = `/chat_app/chat/${roomName}`;
+        }
+
+        // Load rooms when page loads
+        loadRooms();
+    </script>
+</body>
+</html>

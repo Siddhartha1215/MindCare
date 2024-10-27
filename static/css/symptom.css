@@ -1,0 +1,73 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #dfedfe;
+}
+
+header {
+    background-color: #7365ee;
+    padding: 15px 20px;
+    position: sticky;
+    top: 0;
+    width: auto;
+    z-index: 1000;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three columns */
+    padding: 10px;
+    gap: 10px; /* Space between grid items */
+    margin: 20px 0;
+}
+
+.grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    padding: 20px;
+    text-align: center;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+input[type="submit"], .btn-cta {
+    display: inline-block;
+    padding: 15px 25px;
+    color: white;
+    background-color: #6A5ACD; /* Button color */
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: 1fr; /* Stack items on smaller screens */
+    }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 0.5rem;
+}
+
+.card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+

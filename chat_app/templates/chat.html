@@ -22,8 +22,15 @@
 
     <script type="text/javascript">
         var socket = io();
+
+        socket.on('connect', () => {
+            console.log('Connected to Socket.IO server');
+            // Log the room and username for verification
+            console.log('Username:', username, 'Room:', room);
+        });
+
         var username = "{{ username }}";
-        var room = 'main_room';
+        var room = "{{ room }}";
         var isBanned = false;
 
         // Check if the user is banned initially
@@ -37,17 +44,19 @@
                     isBanned = true;
                 } else {
                     document.getElementById('chat-container').style.display = 'block';
-                    socket.emit('join', {'username': username, 'room': room});
+                    socket.emit('join', {'username': username, 'room': room});               
                 }
             });
 
-        socket.on('message', function(msg) {
-            var chatBox = document.getElementById('chat-box');
-            var message = document.createElement('p');
-            message.innerHTML = msg;
-            chatBox.appendChild(message);
-            chatBox.scrollTop = chatBox.scrollHeight;  // Auto-scroll to the bottom
-        });
+
+            socket.on('chat_message', function(data) {
+                console.log('Received message:', data);
+                var chatBox = document.getElementById('chat-box');
+                var message = document.createElement('p');
+                message.innerHTML = `<strong>${data.username}:</strong> ${data.msg}`;  // Format message properly
+                chatBox.appendChild(message);
+                chatBox.scrollTop = chatBox.scrollHeight;  // Auto-scroll to the bottom
+            });
 
         socket.on('banned', function(data) {
             document.getElementById('ban-message').innerText = data.message;
@@ -64,7 +73,7 @@
             }
             var message = document.getElementById('message').value;
             if (message.trim() !== '') {
-                socket.emit('message', {'username': username, 'msg': message, 'room': room});
+                socket.emit('chat_message', {'username': username, 'msg': message, 'room': room});
                 document.getElementById('message').value = '';
             }
         }

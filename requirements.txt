@@ -3,3 +3,9 @@ gunicorn
 flask-socketio
 Flask-Login
 pymongo
+SpeechRecognition
+google-generativeai
+numpy
+pandas
+scikit-learn
+seaborn

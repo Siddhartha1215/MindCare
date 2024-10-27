@@ -19,7 +19,7 @@ function startVoiceRecognition() {
         document.getElementById('user-input').value = speechToText;
 
         // Send the recognized text to the Flask backend
-        fetch('/generate-response', {
+        fetch('/voicebot/generate-response', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

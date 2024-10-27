@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ch.css') }}">
+</head>
+<body>
+    <div id="container">
+        <h1>Welcome to our Consultation Service</h1>
+
+        <!-- Admin Login opens in a new tab -->
+        <button class="action-button" onclick="openAdminLogin()">Admin Login</button>
+
+        <!-- User Chat opens in a new tab -->
+        <button class="action-button" onclick="startChat()">Start Video Chat as User</button>
+    </div>
+
+    <script>
+        function openAdminLogin() {
+            window.open('/videochat/videochat_admin', '_blank');
+        }
+
+        function startChat() {
+            fetch('/videochat/videochat_start')
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "waiting") {
+                    window.open(`/videochat/videochat/${data.username}`, '_blank');  // Open user chat in new tab
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,18 +1,23 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #dfedfe;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .container {
-    width: 80%;
-    margin: 50px auto;
-    background: white;
+    width: 90%;
+    max-width: 600px;
+    align-items: center;
+    text-align: center;
+    background-color: #ffffff;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
@@ -63,4 +68,26 @@ textarea {
 #response-text {
     font-size: 16px;
     color: #555;
+}
+
+.flash-messages {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+}
+.flash-message {
+    padding: 10px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+.flash-message.danger {
+    background-color: #f44336;
+}
+.flash-message.warning {
+    background-color: #FFC107;
+    color: #856404;
+    border-left: 5px solid #FFB300;
+    padding: 10px;
+    border-radius: 3px;
+    margin-bottom: 10px;
 }
