@@ -19,7 +19,7 @@
   - To obtain an API key, create a google cloud console account and navigate to the console to generate credentials.
 
 ## Demo Video
-Watch the demo of the Mind Care app on YouTube: [Mind Care Demo](https://www.youtube.com/watch?v=example)
+Watch the demo of the Mind Care app on YouTube: [Mind Care Demo](https://youtu.be/tG4C4Ns6sE4)
 
 ## Installation and Setup
 To set up the Mind Care project locally, follow these steps:
