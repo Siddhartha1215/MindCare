@@ -167,7 +167,7 @@ nav ul li a {
   }
 }
 
-
+/* 
 #section-professional-therapy {
 background-color: white; 
 padding: 3rem 0;
@@ -214,7 +214,93 @@ color: white;
 border-radius: 0.5rem;
 transition: background-color 0.3s ease;
 }
+ */
 
+ .therapy-container {
+  background-color: #e6f0ff;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.therapy-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+#online-therapy-section {
+  padding: 20px;
+}
+
+.therapy-image-wrapper {
+  position: relative;
+}
+
+.message-box {
+  display: flex;
+  align-items: center;
+  background-color: #f0f4ff;
+  padding: 10px;
+  border-radius: 8px;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  width: calc(100% - 40px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.message-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.message-info {
+  flex: 1;
+}
+
+.therapist-name {
+  font-weight: bold;
+  margin: 0;
+}
+
+.therapist-role {
+  font-size: 0.85rem;
+  color: #666666;
+  margin: 0;
+}
+
+.message-text {
+  margin-top: 5px;
+  font-size: 0.9rem;
+}
+
+.message-timestamp {
+  font-size: 0.8rem;
+  color: #999999;
+  margin-top: 5px;
+}
+
+.therapy-details {
+  opacity: 1;
+  transform: none;
+}
+
+.therapy-certifications img {
+  width: 40px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.therapy-cta-btn {
+  background-color: #3366cc;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+}
 
 
 
@@ -795,3 +881,56 @@ body {
     width: 100%;
   }
 }  
+.benefits-section {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.benefits-section h2 {
+  font-size: 24px;
+  color: #2D3E50;
+  margin-bottom: 30px;
+}
+
+.benefits-container {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.benefit-item {
+  max-width: 300px;
+  text-align: center;
+  text-align: left;
+}
+
+.benefit-icon {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.benefit-item h3 {
+  font-size: 20px;
+  margin-top: 10px;
+  color: #333333;
+}
+
+.benefit-item p {
+  font-size: 16px;
+  color: #666666;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+.learn-more {
+  color: #0000EE;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.learn-more:hover {
+  text-decoration: underline;
+}

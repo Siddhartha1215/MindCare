@@ -62,35 +62,55 @@
       <section class="hero">
         <div class="hero-content">
           <h2>Your Mental Health Matters</h2>
-          <p>We are here to support your journey to better mental well-being.</p>
-          <a href="#start-chat" class="btn-cta">Talk with assistant</a>
-          <a href="#consultation" class="btn-cta">Chat with us</a>
+          <p>Your Personal Space to Relax, Connect, and Find Support.</p>
+          <a href="{{ url_for('voicebot.voice') }}" class="btn-cta">Talk with AI</a>
+          <!-- <a href="" class="btn-cta">Chat with us</a> -->
         </div>
       </section>
     </div>
-    <!-- Professional Therapy Section -->
-    <div class="container">
-      <div class="card">
-        <h2>Professional Therapy</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt voluptatem natus</p>
-        <section id="section-professional-therapy">
-          <div class="container-lg px-0 px-lg-4 mt-md-5 mb-lg-4">
-            <div class="row justify-content-center align-items-center">
-              <div class="col-12 col-lg-7">
-                <div class="position-relative">
-                  <div class="ps-lg-5 pb-0 pb-sm-5">
-                    <img src="static/css/professional-therapist.jpg" class="rounded-lg-2 img-fluid" alt="Online therapy from a licensed professional therapist">
+    <div class="benefits-section">
+      <h2>We're here to help you feel better.</h2>
+      <div class="benefits-container">
+          <div class="benefit-item">
+              <img style="height: auto;width:70px;align-items: center;"  src="static/css/Band-aid.png" alt="Band-aid Icon" class="benefit-icon">
+              <h3 style="margin-top: 30px;font-size: 30px;" >Stress less.</h3>
+              <p style="font-size: 17px;">Get in-the-moment relief for stress and anxiety so you can get back to living.</p>
+              <a href="https://www.healthline.com/health/stress/effects-on-body" class="learn-more">Learn More</a>
+              <br>
+          </div>
+          <div class="benefit-item">
+              <img style="height: auto;width:70px;" src="static/css/Sleep.png" alt="Sleep Icon" class="benefit-icon">
+              <h3 style="margin-top: 30px;font-size: 30px;" >Sleep more.</h3>
+              <p style="font-size: 17px;">Fall asleep (and stay asleep) naturally and peacefully.</p>
+              <a href="https://www.healthline.com/health/sleep-deprivation/effects-on-body" class="learn-more">Learn More</a>
+          </div>
+          <div class="benefit-item">
+              <img style="height: auto;width:100;" src="static/css/leaf.png" alt="Mindfulness Icon" class="benefit-icon">
+              <h3 style="margin-top: 50px;font-size: 30px;" >Live mindfully.</h3>
+              <p style="font-size: 17px;">Navigate life’s ups and downs with resilience, confidence and guided support.</p>
+              <a href="https://www.verywellmind.com/peace-of-mind-how-to-find-and-keep-it-7369842" class="learn-more">Learn More</a>
+          </div>
+      </div>
+  </div>   
+      <div class="therapy-card">
+        <section id="online-therapy-section">
+          <div class="therapy-content px-0 px-lg-4 mt-md-5 mb-lg-4">
+            <div class="therapy-row d-flex justify-content-center align-items-center">
+              <div class="therapy-image-col col-12 col-lg-7">
+                <div class="therapy-image-wrapper">
+                  <div class="therapy-image-padding">
+                    <img style="padding-left:40px;height:auto;width:650px;" src="static/css/chat_room.jpg"  alt="Online therapy from a licensed professional therapist">
                   </div>
                 </div>
               </div>
-              <div class="col-12 col-lg-5 p-5">
-                <div class="reveal-slideup reveal-fadein reveal-state-done">
-                  <h6 class="fw-semibold text-uppercase">Professional Therapy</h6>
-                  <h3 class="fw-bold fs-2">Get support with online therapy</h3>
-                  <p>Want a little extra help? You can get ongoing support, treatment, and guidance from a licensed therapist when you sign up for online therapy.</p>
-                  <div class="col-12 col-sm-8 col-md-6 col-lg-12 col-xl-10 row align-items-center mb-3 mx-auto mx-lg-0"></div>
-                  <div class="text-center text-lg-start mb-4">
-                    <a href="#" class="btn-cta">Get started</a>
+              <div class="therapy-info-col col-12 col-lg-5 p-5">
+                <div class="therapy-details">
+                  <h6 class="therapy-heading text-uppercase">Stress Relief Chat Rooms</h6>
+                  <h3 class="therapy-title">Connect with anonymous</h3>
+                  <p>Looking to relieve stress or share your thoughts? You can chat with random individuals or groups in anonymous chat rooms. Create a room, start conversations, and find support from people who understand</p>
+                  <div class="therapy-button text-center text-lg-start mb-4">
+                    <!-- <a class="anc">Chat Rooms</a> -->
+                    <a href="{{ url_for('chat_app.chat') }}" class="anc">Get started</a>
                   </div>
                 </div>
               </div>
@@ -98,110 +118,119 @@
           </div>
         </section>
       </div>
-    </div>
-
+      
+      <!-- <div class="container py-5"> -->
+        <!-- <div class="card shadow-lg border-0 rounded-4"> -->
+          <div class="card-body">
+            <section id="online-therapy-section" class="my-5">
+              <div class="container px-0 px-lg-4">
+                <div class="row justify-content-center align-items-center">
+                  <div class="col-12 col-lg-5 order-lg-1 mt-4 mt-lg-0">
+                    <div class="text-lg-start text-center">
+                      <h6 class="fw-semibold text-uppercase">AI Conversations</h6>
+                      <h3 class="fw-bold fs-2">Engage with an AI for personalized support</h3>
+                      <p>Need someone to listen anytime? Converse with an AI companion designed to understand and offer support in times of stress or need.</p>
+                      <a class="anc" href="{{ url_for('voicebot.voice') }}">Get started</a>
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-7 order-lg-2">
+                    <div class="position-relative">
+                      <img style="padding-left:40px;height:auto;width:700px;" src="static/css/ai_chat.jpg" class="img-fluid rounded-4" alt="Online therapy from a licensed professional therapist">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+  <div class="card">
     <!-- Featured Resources Section -->
     <div id="resources" class="container">
-      <div class="card">
+      <!-- <div class="card"> -->
         <h2>Featured Resources</h2>
         <p>Check out our latest articles and videos on mental health.</p>
         <div class="grid-container">
           <div class="grid-item">
-            <iframe src="https://www.youtube.com/embed/rkZl2gsLUp4" title="How to manage your mental health | Leon Taylor | TEDxClapham" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe  src="https://www.youtube.com/embed/j0_0O-FmLtc"  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
           <div class="grid-item">
             <iframe src="https://www.youtube.com/embed/rkZl2gsLUp4" title="How to manage your mental health | Leon Taylor | TEDxClapham" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
           <div class="grid-item">
-            <iframe src="https://www.youtube.com/embed/wOGqlVqyvCM" title="5 Tips to Improve your Mental Health" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe  src="https://www.youtube.com/embed/wOGqlVqyvCM" title="5 Tips to Improve your Mental Health" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
           <div class="grid-item">
-            <iframe src="https://www.youtube.com/embed/wOGqlVqyvCM" title="5 Tips to Improve your Mental Health" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe  src="https://www.youtube.com/embed/rWlX-qDzsyI" title="How to Be More Stable? - Sadhguru Spot 2018" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
           <div class="grid-item">
-            <iframe src="https://www.youtube.com/embed/wOGqlVqyvCM" title="5 Tips to Improve your Mental Health" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe  src="https://www.youtube.com/embed/tH_AbG1JMOE" title="7 Steps for a Joyful Life - Amma&#39;s Birthday Message - Sri Mata Amritanandamayi Devi" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
           <div class="grid-item">
-            <iframe src="https://www.youtube.com/embed/wOGqlVqyvCM" title="5 Tips to Improve your Mental Health" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe  src="https://www.youtube.com/embed/Ie2uiGBWti4" title="Keeping The Mind Stable During Chaos: Part 5: BK Shivani at Canberra (English)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>          </div>
+          <div class="grid-item">
+            <iframe src="https://www.youtube.com/embed/sm0i1Y4g_zA" title="How To Be Calm and Peaceful Within | Buddhism In English" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>          </div>
+          <div class="grid-item">
+            <iframe src="https://www.youtube.com/embed/HABbAHdfdXk" title="How Can I Find Peace of Mind?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
           <div class="grid-item">
-            <iframe src="https://www.youtube.com/embed/wOGqlVqyvCM" title="5 Tips to Improve your Mental Health" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-          </div>
-          <div class="grid-item">
-            <iframe src="https://www.youtube.com/embed/wOGqlVqyvCM" title="5 Tips to Improve your Mental Health" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-          </div>
-          <div class="grid-item">
-            <iframe src="https://www.youtube.com/embed/wOGqlVqyvCM" title="5 Tips to Improve your Mental Health" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-          </div>
-        </div>
-      </div>
-      <!-- Success Stories Section -->
-      <div class="card" id="success-stories">
-        <h2>Success Stories</h2>
-        <p>Read how our platform has positively impacted the lives of our users.</p>
-        <div class="row">
-          <!-- Success Story 1 -->
-          <div class="col-md-4">
-            <div class="card">
-              <img src="static/css/professional-therapist.jpg" class="card-img-top" alt="User Story 1">
-              <div class="card-body">
-                <h5 class="card-title">John Doe's Journey</h5>
-                <p class="card-text">After struggling with anxiety, John found relief and regained confidence through our online therapy sessions and community support.</p>
-                <p class="card-text text-muted">"The platform was a lifeline during a challenging time, connecting me with people who understood."</p>
-              </div>
-            </div>
-          </div>
-          <!-- Success Story 2 -->
-          <div class="col-md-4">
-            <div class="card">
-              <img src="static/css/professional-therapist.jpg" class="card-img-top" alt="User Story 2">
-              <div class="card-body">
-                <h5 class="card-title">Sarah Smith's Transformation</h5>
-                <p class="card-text">Sarah battled depression and found support in our community resources and mindfulness workshops, helping her to rebuild her mental well-being.</p>
-                <p class="card-text text-muted">"I’ve learned coping skills and mindfulness techniques that I’ll carry with me for life."</p>
-              </div>
-            </div>
-          </div>
-          <!-- Success Story 3 -->
-          <div class="col-md-4">
-            <div class="card">
-              <img src="static/css/professional-therapist.jpg" class="card-img-top" alt="User Story 3">
-              <div class="card-body">
-                <h5 class="card-title">Emily Brown's Support Journey</h5>
-                <p class="card-text">With the help of our supportive chat community, Emily was able to manage her stress and build resilience through tough times.</p>
-                <p class="card-text text-muted">"Connecting with others and accessing resources here made all the difference in my journey."</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <p class="text-center mt-4">These are just a few examples of how our platform has helped individuals overcome their challenges. Join us and be part of a supportive community that understands and cares.</p>
-      </div>
-      <!-- About Us Section -->
-      <div id="about" class="responsive-container-block bigContainer card">
-        <h2 style="margin-top: 5%;">About Us</h2>
-        <div class="responsive-container-block Container">
-          <img class="mainImg" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/eaboutus1.svg">
-          <div class="allText aboveText">
-            <p class="text-blk headingText">Our Mission</p>
-            <p class="text-blk description"> At MindCare, our mission is to enhance mental health accessibility and promote well-being for all individuals, particularly in underserved communities. </p>
-          </div>
-        </div>
-        <div class="responsive-container-block Container bottomContainer">
-          <img class="mainImg" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/xpraup2.svg">
-          <div class="allText bottomText">
-            <p class="text-blk headingText">Our Vision</p>
-            <p class="text-blk description"> We envision a world where mental health support is universally accessible and where individuals feel empowered to seek help without fear of judgment. </p>
-          </div>
+            <iframe src="https://www.youtube.com/embed/BQVFVXmU-Ug" title="How Stop Over Thinking  | Buddhism In English" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>          </div>
         </div>
       </div>
     </div>
+  <p class="text-center mt-4">These are just a few examples of how our platform has helped individuals overcome their challenges. Join us and be part of a supportive community that understands and cares.</p>
+  </div>
+  <div style="background-color:#e1edff; padding: 20px;">
+    <h2>Success Stories</h2>
+    <p>Read how our platform has positively impacted the lives of our users.</p>
+    <div class="row">
+        
+        <div class="col-md-4">
+          <div class="card">
+            <img src="static/css/professional-therapist.jpg" class="img-fluid" alt="User Story 1">
+            <h5 class="mt-2">Kaiser 's Journey</h5>
+            <p>My Struggle with Depressione</p>
+            <p class="text-muted">"While I have a great support system, I did not feel like they truly understood what it felt like to be me. I really wished I could talk to people unfiltered about how sad I was and how I did not see a light at the end of the tunnel."</p>
+        </div>
+      </div>
+        <!-- Success Story 2 -->
+        <div class="col-md-4">
+          <div class="card">
+            <img src="static/css/Sarah_smith.jpg" class="img-fluid" alt="User Story 2">
+            <h5 class="mt-2">Sarah Smith's Transformation</h5>
+            <p>Sarah battled depression and found support in our community resources and mindfulness workshops, helping her to rebuild her mental well-being.</p>
+            <BR>
+            <p class="text-muted">"I’ve learned coping skills and mindfulness techniques that I’ll carry with me for life."</p>
+            
+          </div>
+      </div>
+        <!-- Success Story 3 -->
+        <div class="col-md-4">
+          <div class="card">
+            <img src="static/css/professional-therapist.jpg" class="img-fluid" alt="User Story 3">
+            <h5 class="mt-2">Emily Brown's Support Journey</h5>
+            <p>With the help of our supportive chat community, Emily was able to manage her stress and build resilience through tough times.</p>
+            <p class="text-muted">"Connecting with others and accessing resources here made all the difference in my journey."</p>
+        </div>
+        </div>
+    </div>
+  <!-- About Us Section -->
+  <div id="about" class="responsive-container-block bigContainer" style="background-color: #f8f9fa; padding: 20px;">
+      <h2 style="margin-top: 5%;">About Us</h2>
+      <div class="responsive-container-block Container bottomContainer">
+          <img class="mainImg" style="width: 470px; height: auto;" src="static/css/vision.jpg">
+          <div class="allText bottomText">
+              <p class="text-blk headingText">Our Vision</p>
+              <p class="text-blk description"> Our vision is to create a safe and supportive digital space where individuals can connect anonymously with others and licensed therapists, fostering open conversations and promoting mental wellness. We aim to break down barriers to mental health support, ensuring that everyone has access to the resources they need to navigate life’s challenges.</p>
+          </div>
+      </div>
+  </div>
+  
     <!-- Footer -->
-    <footer>
+    <!-- <footer>
       <p>&copy; 2024 Mental Health Support. All rights reserved.</p>
       <p>
         <a href="#about" style="color: white;">About Us</a> | <a href="#contact" style="color: white;">Contact</a> | <a href="#privacy" style="color: white;">Privacy Policy</a> | <a href="#terms" style="color: white;">Terms of Service</a>
       </p>
-    </footer>
+    </footer> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js" integrity="sha384-QiH9AAd0pHpL3NQz9zGZ3yLD2trL3F0uN9uDbCUVXjr58vPwjFt8dVZzB8BITmuZ" crossorigin="anonymous"></script>  
     </script>
   </body>
