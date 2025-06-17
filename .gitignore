@@ -1,2 +1,5 @@
 path
-__pycache__
+__pycache__/
+myenv/
+.env
+**/__pycache__/

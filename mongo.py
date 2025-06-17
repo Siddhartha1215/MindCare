@@ -1,3 +1,8 @@
+import os
 from pymongo import MongoClient
-client = MongoClient('mongodb+srv://erza:qaz000@cluster0.kbmk3bq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+from dotenv import load_dotenv
+
+load_dotenv()
+mongo_url = os.getenv("MONGO_URL")
+client = MongoClient(mongo_url)
 db = client.mindcare
