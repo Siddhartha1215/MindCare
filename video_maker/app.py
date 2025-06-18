@@ -1,17 +1,21 @@
 from flask import render_template, request, Blueprint
 import re
+import os
+from dotenv import load_dotenv
 import google.generativeai as genai
-genai.configure(api_key="AIzaSyDHLQe1XH7ZtwwvLrTc3x4Kk5dosQUUmio")
+
+load_dotenv()
+genai_api_key = os.getenv("GENAI_API_KEY")
+youtube_api_key = os.getenv("YOUTUBE_API_KEY")
+
+genai.configure(api_key=genai_api_key)
 model = genai.GenerativeModel('gemini-1.5-flash', generation_config=genai.GenerationConfig(temperature=0.9))
 
 app = Blueprint('video_maker', __name__, template_folder='templates')
 
 from googleapiclient.discovery import build
 
-# Your YouTube API key
-api_key="AIzaSyDWhP88Hr8O7FtRHQnOVtKWYCg8S4v4jh4"
-# api_key = 'AIzaSyC2HjctZ48Zaf3_mY2ricBiKD_-g5SfQts'
-# api_key=""
+api_key=youtube_api_key
 
 # Initialize YouTube API client
 youtube = build('youtube', 'v3', developerKey=api_key)

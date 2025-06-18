@@ -1,110 +1,157 @@
 /* Background Gradient */
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #7f00ff, #e100ff);
-}
-
-/* Login Container */
-.login-container {
+    margin: 0;
+    padding: 0;
+    background-color: #dfedfe;
+    min-height: 100vh;
     display: flex;
-    width: 600px;
-    background-color: white;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Image Section */
-.image-section {
-    width: 40%;
-    display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }
 
-.image-section img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-}
-
-/* Form Section */
-.form-section {
-    width: 60%;
+.login-wrapper {
+    width: 100%;
+    max-width: 1200px;
     padding: 20px;
+}
+
+.login-container {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.logo-section {
+    flex: 1;
+    background: linear-gradient(135deg, #3CB371, #2E8B57);
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    max-width: 200px;
+    height: auto;
+}
+
+.form-section {
+    flex: 1;
+    padding: 40px;
 }
 
 .form-section h2 {
-    margin: 0 0 20px;
-    font-size: 24px;
     color: #333;
-}
-
-/* Flash Messages */
-.flash-messages {
+    font-size: 28px;
     margin-bottom: 10px;
 }
 
-.flash-message {
-    padding: 10px;
-    margin-bottom: 5px;
-    border-radius: 5px;
+.subtitle {
+    color: #666;
+    margin-bottom: 30px;
 }
 
-.flash-message.error {
-    background-color: #f8d7da;
-    color: #721c24;
+.login-form {
+    margin-top: 30px;
 }
 
-.flash-message.success {
-    background-color: #d4edda;
-    color: #155724;
+.form-group {
+    margin-bottom: 20px;
 }
 
-/* Input Fields */
-.form-section input[type="text"],
-.form-section input[type="password"] {
+input[type="text"],
+input[type="password"] {
     width: 100%;
-    padding: 10px;
-    margin: 10px 0;
+    padding: 12px 15px;
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 16px;
+    transition: border-color 0.3s ease;
 }
 
-/* Login Button */
-.form-section button {
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #3CB371;
+    outline: none;
+}
+
+.btn-login {
     width: 100%;
-    padding: 10px;
-    background-color: #28a745;
+    padding: 12px;
+    background-color: #3CB371;
+    color: white;
     border: none;
     border-radius: 5px;
-    color: white;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-.form-section button:hover {
-    background-color: #218838;
+.btn-login:hover {
+    background-color: #2E8B57;
 }
 
-/* Links */
-.form-section .forgot-password,
-.form-section .create-account {
-    display: block;
-    margin: 10px 0;
-    text-align: center;
-    color: #666;
+.form-links {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.forgot-password,
+.create-account {
+    color: #3CB371;
     text-decoration: none;
     font-size: 14px;
+    transition: color 0.3s ease;
 }
 
-.form-section .create-account {
-    font-weight: bold;
+.forgot-password:hover,
+.create-account:hover {
+    color: #2E8B57;
+}
+
+.flash-messages {
+    margin-bottom: 20px;
+}
+
+.flash-message {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.flash-message.error {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #ffcdd2;
+}
+
+.flash-message.success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #c8e6c9;
+}
+
+@media (max-width: 768px) {
+    .login-container {
+        flex-direction: column;
+    }
+
+    .logo-section {
+        padding: 20px;
+    }
+
+    .form-section {
+        padding: 30px;
+    }
+
+    .logo {
+        max-width: 150px;
+    }
 }

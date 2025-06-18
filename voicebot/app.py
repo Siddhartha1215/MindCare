@@ -1,12 +1,17 @@
 from flask import request, jsonify, render_template, Blueprint, flash, redirect, url_for
 import speech_recognition as sr
 from flask_login import current_user
+import os
+from dotenv import load_dotenv
 import google.generativeai as genai
 
 app = Blueprint('voicebot', __name__, template_folder='templates')
 
+load_dotenv()
+genai_api_key = os.getenv("GENAI_API_KEY")
+genai.configure(api_key=genai_api_key)
+
 recognizer = sr.Recognizer()
-genai.configure(api_key="AIzaSyDHLQe1XH7ZtwwvLrTc3x4Kk5dosQUUmio")
 model = genai.GenerativeModel('gemini-1.5-flash', generation_config=genai.GenerationConfig(temperature=0.9))
 
 

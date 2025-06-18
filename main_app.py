@@ -9,6 +9,7 @@ from socket_instance import socketio
 from symptom.app import app as symptom
 from shared import app
 from mongo import db
+from bson.objectid import ObjectId
 
 socketio.init_app(app)
 
@@ -24,7 +25,6 @@ app.register_blueprint(video_maker, url_prefix='/video_maker')
 login_manager = LoginManager(app)
 login_manager.login_view = 'login_panel.login'
 
-from bson.objectid import ObjectId
 
 
 class User(UserMixin):
@@ -57,4 +57,5 @@ def register():
 
 
 if __name__ == '__main__':
-    socketio.run(app)
+    # socketio.run(app)
+    app.run(host='0.0.0.0', port=5000)
