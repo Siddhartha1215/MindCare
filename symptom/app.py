@@ -13,12 +13,6 @@ from sklearn.svm import SVC
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 from flask import render_template, request, Blueprint
-import pandas as pd
-import numpy as np
-import re
-from sklearn.model_selection import train_test_split
-from sklearn.tree import DecisionTreeClassifier
-from sklearn import preprocessing
 
 app = Blueprint('symptom', __name__, template_folder='templates')
 training = pd.read_csv('symptom/ui/Training.csv')

@@ -43,4 +43,10 @@ function startVoiceRecognition() {
     };
 }
 
+// Function to stop speech synthesis
+function stopSpeech() {
+    window.speechSynthesis.cancel();
+}
+
 document.getElementById('voice-btn').addEventListener('click', startVoiceRecognition);
+document.getElementById('stop-btn').addEventListener('click', stopSpeech);

@@ -1,50 +1,87 @@
-# Mind Care
+# MindCare
 
-## Technologies Used
-- **Frontend:** HTML, CSS, JavaScript
-- **Backend:** Flask, Python
-- **Database:** MongoDB
-- **APIs:** [Gemini API](https://aistudio.google.com/apikey), [YouTube Search](https://console.cloud.google.com/apis/dashboard)
-- **Others:** Git, GitHub
-
-## Project Description
 Mind Care is an innovative web application designed to relieve stress and improve mental well-being. It provides users with a platform to engage in anonymous conversations, join chat rooms dedicated to specific health topics, interact with an AI support assistant, and access licensed therapist consultations. This project addresses the growing need for accessible mental health resources, making it easier for individuals to seek help and find community support.
 
 In addition, Mind Care enables users to analyze symptoms through its Symptom Analyzer, which identifies potential conditions based on user input. The app also recommends YouTube videos that match the user's emotional state, using sentiment analysis on the user's text to provide tailored content for relaxation and well-being.
 
-## API References
-- **Gemini API:** [API Documentation](https://aistudio.google.com/apikey)  
-  - To obtain an API key, sign up at Google Studio and follow the instructions on their platform.
+## Features
 
-- **YouTube Search API:** [API Documentation](https://console.cloud.google.com/apis/dashboard)  
-  - To obtain an API key, create a Google Cloud Console account, navigate to the APIs & Services dashboard, and generate credentials.
+- **User Authentication**: Register and login system for users and admins.
+- **Chat System**: Real-time chat between users and admins/therapists.
+- **Symptom Checker**: Users can select symptoms and get results based on a trained model.
+- **Video Chat**: Secure video chat functionality for remote therapy sessions.
+- **Voice Bot**: Voice-based interaction for accessibility.
+- **Admin Dashboards**: Separate dashboards for managing users and sessions.
+- **Modular Structure**: Each feature is encapsulated in its own Flask blueprint/app.
 
-## Demo Video
-Watch the demo of the Mind Care app on YouTube: [Mind Care Demo](https://youtu.be/tG4C4Ns6sE4)
+## Setup Instructions
 
-## Installation and Setup
-To set up the Mind Care project locally, follow these steps:
+### 1. Clone the Repository
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/Siddhartha1215/MindCare.git
-   cd MindCare
-   ```
+```bash
+git clone https://github.com/Siddhartha1215/MindCare.git
+cd MindCare
+```
 
-2. **Install dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
+### 2. Create and Activate a Virtual Environment
 
-3. **Run the application:**
-   ```bash
-   python main_app.py
-   ```
+```bash
+python3 -m venv myenv
+source myenv/bin/activate
+```
 
-4. **Access the app:**
-   Open your browser and go to `http://localhost:5000` to start using Mind Care.
+### 3. Install Dependencies
 
-## Future Scope
-- Integration with IoT or wearable devices to monitor and assess stress levels in real time.
-- Potential collaboration with psychiatric hospitals or mental health organizations to offer Mind Care as part of their digital care toolkit.
-- Expansion of AI-driven features, such as personalized wellness recommendations and progress tracking based on user interactions and well-being data.
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Set Up Environment Variables
+
+Create a `.env` file (if needed) for sensitive settings like secret keys and database URIs.
+
+Example:
+```
+GENAI_API_KEY=API_KEY
+YOUTUBE_API_KEY=API_KEY
+MONGO_URL=your_mongodb_uri
+```
+
+### 5. Run the Application
+
+```bash
+python main_app.py
+```
+
+The app will be available at `http://localhost:5000/` by default.
+
+## Directory Details
+
+- **ch_app/**, **chat_app/**: Chat functionality, with templates and static files.
+- **login_panel/**: Handles user registration and login.
+- **symptom/**: Symptom selection and result prediction (uses `Training.csv`).
+- **video_maker/**: Tools for creating video content.
+- **videochat/**: Video chat rooms and admin management.
+- **voicebot/**: Voice-based interaction.
+- **static/**: All CSS, JS, and image assets.
+- **templates/**: Shared HTML templates.
+- **mongo.py**: MongoDB connection logic.
+- **shared.py**: Shared functions/utilities.
+- **socket_instance.py**: Socket.IO setup for real-time features.
+
+## Technologies Used
+
+- Python 3
+- Flask
+- Flask-SocketIO
+- MongoDB (via PyMongo)
+- HTML, CSS, JavaScript
+- [Other dependencies in requirements.txt]
+
+## Contributing
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/your-feature`).
+3. Commit your changes (`git commit -am 'Add new feature'`).
+4. Push to the branch (`git push origin feature/your-feature`).
+5. Open a Pull Request.
