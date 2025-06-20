@@ -31,6 +31,7 @@ source myenv/bin/activate
 ```
 
 ### 3. Install Dependencies
+<<<<<<< HEAD
 
 ```bash
 pip install -r requirements.txt
@@ -85,3 +86,60 @@ The app will be available at `http://localhost:5000/` by default.
 3. Commit your changes (`git commit -am 'Add new feature'`).
 4. Push to the branch (`git push origin feature/your-feature`).
 5. Open a Pull Request.
+=======
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Set Up Environment Variables
+
+Create a `.env` file (if needed) for sensitive settings like secret keys and database URIs.
+
+Example:
+```
+GENAI_API_KEY=API_KEY
+YOUTUBE_API_KEY=API_KEY
+MONGO_URL=your_mongodb_uri
+```
+
+### 5. Run the Application
+
+```bash
+python main_app.py
+```
+
+The app will be available at `http://localhost:5000/` by default.
+
+## Directory Details
+
+- **ch_app/**, **chat_app/**: Chat functionality, with templates and static files.
+- **login_panel/**: Handles user registration and login.
+- **symptom/**: Symptom selection and result prediction (uses `Training.csv`).
+- **video_maker/**: Tools for creating video content.
+- **videochat/**: Video chat rooms and admin management.
+- **voicebot/**: Voice-based interaction.
+- **static/**: All CSS, JS, and image assets.
+- **templates/**: Shared HTML templates.
+- **mongo.py**: MongoDB connection logic.
+- **shared.py**: Shared functions/utilities.
+- **socket_instance.py**: Socket.IO setup for real-time features.
+
+## Technologies Used
+
+- Python 3
+- Flask
+- Flask-SocketIO
+- MongoDB (via PyMongo)
+- HTML, CSS, JavaScript
+- [Other dependencies in requirements.txt]
+
+## Contributing
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/your-feature`).
+3. Commit your changes (`git commit -am 'Add new feature'`).
+4. Push to the branch (`git push origin feature/your-feature`).
+5. Open a Pull Request.
+
+>>>>>>> bd14b9b73d7719b0650377cb05c84529ffac4bd5
