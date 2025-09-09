@@ -86,7 +86,6 @@ The app will be available at `http://localhost:5000/` by default.
 3. Commit your changes (`git commit -am 'Add new feature'`).
 4. Push to the branch (`git push origin feature/your-feature`).
 5. Open a Pull Request.
-=======
 
 ```bash
 pip install -r requirements.txt
